@@ -19,19 +19,29 @@ source here. **This is the place to tell us what you think** (see
 
 ## Install
 
-> The first release is not published yet. The command below starts working
-> when it is.
-
 ```sh
 curl -fsSL https://raw.githubusercontent.com/ulab24/ulx/main/install.sh | bash
 ```
 
-This installs the latest release. Run it again, or run `ulx upgrade`, to
-update an existing install. Your configuration and sessions are never touched.
+This installs the latest release for your machine (Linux or macOS, amd64 or
+arm64). It verifies the download before installing anything, and puts `ulx`
+in `/usr/local/bin` when run as root, otherwise in `~/.local/bin`.
 
-Supported: Linux and macOS on amd64 and arm64. Windows builds are published
-with each release as a `.zip`; install one by hand and update it with
-`ulx upgrade`.
+To update, run the same command again: it replaces `ulx` where it already
+lives and leaves your configuration and sessions alone.
+
+Options go after `bash -s --`:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/ulab24/ulx/main/install.sh | bash -s -- --version=v0.1.0
+curl -fsSL https://raw.githubusercontent.com/ulab24/ulx/main/install.sh | bash -s -- --dir=$HOME/bin
+```
+
+`--version=vX.Y.Z` installs that release instead of the latest, and
+`--dir=PATH` picks the install directory. `--help` lists them.
+
+Windows builds are published with each release as a `.zip`. Unpack one by hand
+and put `ulx.exe` on your `PATH`.
 
 ## First run
 
