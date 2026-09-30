@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/welcome.svg" width="760" alt="The ulx welcome screen. The ULX wordmark wipes in from the left, the tagline types out, then recent sessions, starter commands and a tip fade in.">
+</p>
+
 # ulx
 
 ulx is an AI coding agent that lives in your terminal. You describe a task,
@@ -53,6 +57,35 @@ ulx doctor    # check that everything resolves
 ulx talks to OpenAI, Anthropic, Google Gemini and OpenCode Go directly, and to
 any server that speaks the OpenAI or Anthropic API, which covers gateways and
 local inference servers. Inside the TUI, `/help` lists every slash command.
+
+## A look around
+
+First-run setup walks through a provider, a key, a model and how careful ulx
+should be. It picks up API keys already in your environment, and tests the
+connection before it asks anything else.
+
+<p align="center">
+  <img src="assets/setup-provider.svg" width="760" alt="Setup, step 2 of 6: choose a provider. Anthropic and OpenAI are marked because their API keys were found in the environment.">
+</p>
+<p align="center">
+  <img src="assets/setup-credentials.svg" width="760" alt="Setup, step 3 of 6: connect Anthropic. The key from the environment was found, and a connection test reports connected in 412 ms with 3 models available.">
+</p>
+<p align="center">
+  <img src="assets/setup-safety.svg" width="760" alt="Setup, step 5 of 6: how careful should ulx be. Ask first is recommended, and the sandbox status is shown.">
+</p>
+
+Day to day, ulx shows what it reads and changes as it goes, with diffs you can
+check, and asks before anything risky.
+
+<p align="center">
+  <img src="assets/chat.svg" width="760" alt="A ulx session: a plan in the sidebar, a file read, an edit shown as a diff, a command that failed, and the assistant's summary.">
+</p>
+<p align="center">
+  <img src="assets/permission.svg" width="760" alt="A permission prompt for a shell command: medium risk, inside the sandbox, with choices to allow once, skip it, or remember the decision for the session.">
+</p>
+
+These images are drawn by ulx's own interface, with sample sessions and a
+sample project.
 
 ## Verifying downloads
 
