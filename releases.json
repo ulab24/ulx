@@ -2,10 +2,84 @@
   "schema": 1,
   "product": "ulx",
   "repo": "ulab24/ulx",
-  "generated": "2026-11-09T10:32:57Z",
-  "latest": "v0.4.0",
+  "generated": "2026-11-10T15:18:31Z",
+  "latest": "v0.5.0",
   "signing_key_fingerprint": "09F881428CD9EA8B8471384B9E17F9109A9978C1",
   "releases": [
+    {
+      "version": "0.5.0",
+      "tag": "v0.5.0",
+      "date": "2026-11-10",
+      "prerelease": false,
+      "summary": "The chat screen now has numbered panes you jump to with a number key, and `init.lua` plus Lua plugins let you change keys, theme and status segments without waiting for a release.",
+      "sections": [
+        {
+          "name": "Added",
+          "key": "added",
+          "items": [
+            "**Numbered panes.** On a terminal of at least 100x24 the side column sits on the left as `[1]-Sessions` (resumable sessions, this one first), `[2]-Plan`, `[3]-Agents` and `[4]-Files`, with the chat as `[0]` and a key-hint bar on the last row. Set `preferences.panesSide` to `\"right\"` to keep it on the right.",
+            "**Pane keys.** With an empty message box (or in vim NORMAL) `1` to `4` focus a pane and `0` or `esc` return to the chat; `alt+1` to `alt+4` and `alt+0` work even while you type. `tab`/`shift+tab` move between panes, `j`/`k` or the arrows move the selection. Remap them as `keybindings.focusPane1` to `focusPane4` and `focusChat`.",
+            "**Pane actions.** `enter` resumes the session, opens the plan step, opens the agent in the transcript or opens the file's diff; `x` in `[3]-Agents` stops that agent (background agents only; one running inside the turn says to use `esc esc`). The chat area previews the selection as `[0]-Session preview`, `[0]-Plan step`, `[0]-Agent detail` or `[0]-File diff`. With the mouse, click a pane or row (click again to open); the wheel moves the selection.",
+            "**Panes on small terminals.** Below 100x24, `1` to `4` and `alt+1` to `alt+4` open that pane as a popup; `esc` closes it.",
+            "**`init.lua`.** Put Lua in `~/.config/ulx/init.lua` (or name a file with `ULX_INIT_LUA`, or turn it off with `ULX_INIT_LUA=off`) to set `ulx.opt` options over your JSON config, map keys with `ulx.keymap.set`, react to events with `ulx.on`, and recolour theme tokens with `ulx.theme.set`. Lua keys never take a letter or digit you are typing, and a broken `init.lua` leaves ulx working and shows one notice with the file and line.",
+            "**Lua plugins.** A folder in `~/.config/ulx/lua/\u003cname\u003e/` with a `plugin.lua` manifest and an `init.lua` can add keys, events, status segments, panes and dialogs. Plugins get no permission until you grant it with `ulx.plugins.allow` or in the `/lua` popup: `state.read` (titles, plan, files), `commands.run` (slash commands) and `exec` (programs). Lua runs in a sandbox with no file or network access, under time and memory limits, only in the interactive TUI; a plugin that fails three times in a minute is turned off until you restart. `docs/LUA.md` is the reference.",
+            "**Lua on screen.** `ulx.status.add` adds a segment to the hint bar or header, `ulx.pane.add` adds panes `5` to `9`, and `ulx.ui.select`, `ulx.ui.input` and `ulx.ui.popup` open dialogs.",
+            "**`/lua` popup** (or `ctrl+x L`): each plugin's version, requested and granted permissions, state and last error. `g` grants, `d` turns a plugin off or on, `r` reloads, `enter` shows the full error.",
+            "**`ulx lua check|eval|plugins`** check `init.lua` or a plugin without opening the TUI, evaluate an expression in the sandbox, and list plugins; `ulx doctor` has a Lua section that warns but never fails; `ulx config` lists the settings `init.lua` overrides, with the line that sets each."
+          ]
+        },
+        {
+          "name": "Changed",
+          "key": "changed",
+          "items": [
+            "The side column now appears from 100 columns (it was 120) and sits on the left; its CONTEXT section is gone because the composer's gauge covers it. `sidebar = \"on\"` also shows it on the empty home screen, `\"auto\"` shows it once a conversation has something to list, `\"off\"` never shows it and leaves the digits as text. `ctrl+b` hides and shows it, and still opens run details on a narrow terminal.",
+            "Popups (models, themes, sessions, providers, MCP, shortcuts, provider setup) share one size, about 85% of the width and up to 75% of the height, so lists show more rows on a large terminal."
+          ]
+        }
+      ],
+      "url": "https://github.com/ulab24/ulx/releases/tag/v0.5.0",
+      "compare_url": "https://github.com/ulab24/ulx/compare/v0.4.0...v0.5.0",
+      "assets": [
+        {
+          "name": "ulx-v0.5.0-linux-arm64.tar.gz",
+          "os": "linux",
+          "arch": "arm64",
+          "url": "https://github.com/ulab24/ulx/releases/download/v0.5.0/ulx-v0.5.0-linux-arm64.tar.gz",
+          "sha256": "12fc0850fdda1bc8798828048ac81e4786fd400e3f283f9f9fdb6dcff942a488"
+        },
+        {
+          "name": "ulx-v0.5.0-linux-x64.tar.gz",
+          "os": "linux",
+          "arch": "x64",
+          "url": "https://github.com/ulab24/ulx/releases/download/v0.5.0/ulx-v0.5.0-linux-x64.tar.gz",
+          "sha256": "834d755a142619dd99cbf0995c23a1fd184da0e4a4830b902c4be54f0da9e6a7"
+        },
+        {
+          "name": "ulx-v0.5.0-macos-arm64.tar.gz",
+          "os": "macos",
+          "arch": "arm64",
+          "url": "https://github.com/ulab24/ulx/releases/download/v0.5.0/ulx-v0.5.0-macos-arm64.tar.gz",
+          "sha256": "8b749ddc5d26a42f37f8009f63a820c745feaa2f3671d777d72fe3db72716d83"
+        },
+        {
+          "name": "ulx-v0.5.0-macos-x64.tar.gz",
+          "os": "macos",
+          "arch": "x64",
+          "url": "https://github.com/ulab24/ulx/releases/download/v0.5.0/ulx-v0.5.0-macos-x64.tar.gz",
+          "sha256": "d555b9c5b41774896305b346dd8994ec5fee524792405c5d2997c06347698123"
+        },
+        {
+          "name": "ulx-v0.5.0-windows-x64.zip",
+          "os": "windows",
+          "arch": "x64",
+          "url": "https://github.com/ulab24/ulx/releases/download/v0.5.0/ulx-v0.5.0-windows-x64.zip",
+          "sha256": "f31e4ac20d1d514e887213889d7571e1f2ef18e39fa8ea880f4eac773d6493a4"
+        }
+      ],
+      "checksums_url": "https://github.com/ulab24/ulx/releases/download/v0.5.0/checksums.txt",
+      "signature_url": "https://github.com/ulab24/ulx/releases/download/v0.5.0/checksums.txt.asc",
+      "notes_md": "The chat screen now has numbered panes you jump to with a number key, and `init.lua` plus Lua plugins let you change keys, theme and status segments without waiting for a release.\n\n### Added\n\n- **Numbered panes.** On a terminal of at least 100x24 the side column sits on the left as `[1]-Sessions` (resumable sessions, this one first), `[2]-Plan`, `[3]-Agents` and `[4]-Files`, with the chat as `[0]` and a key-hint bar on the last row. Set `preferences.panesSide` to `\"right\"` to keep it on the right.\n- **Pane keys.** With an empty message box (or in vim NORMAL) `1` to `4` focus a pane and `0` or `esc` return to the chat; `alt+1` to `alt+4` and `alt+0` work even while you type. `tab`/`shift+tab` move between panes, `j`/`k` or the arrows move the selection. Remap them as `keybindings.focusPane1` to `focusPane4` and `focusChat`.\n- **Pane actions.** `enter` resumes the session, opens the plan step, opens the agent in the transcript or opens the file's diff; `x` in `[3]-Agents` stops that agent (background agents only; one running inside the turn says to use `esc esc`). The chat area previews the selection as `[0]-Session preview`, `[0]-Plan step`, `[0]-Agent detail` or `[0]-File diff`. With the mouse, click a pane or row (click again to open); the wheel moves the selection.\n- **Panes on small terminals.** Below 100x24, `1` to `4` and `alt+1` to `alt+4` open that pane as a popup; `esc` closes it.\n- **`init.lua`.** Put Lua in `~/.config/ulx/init.lua` (or name a file with `ULX_INIT_LUA`, or turn it off with `ULX_INIT_LUA=off`) to set `ulx.opt` options over your JSON config, map keys with `ulx.keymap.set`, react to events with `ulx.on`, and recolour theme tokens with `ulx.theme.set`. Lua keys never take a letter or digit you are typing, and a broken `init.lua` leaves ulx working and shows one notice with the file and line.\n- **Lua plugins.** A folder in `~/.config/ulx/lua/\u003cname\u003e/` with a `plugin.lua` manifest and an `init.lua` can add keys, events, status segments, panes and dialogs. Plugins get no permission until you grant it with `ulx.plugins.allow` or in the `/lua` popup: `state.read` (titles, plan, files), `commands.run` (slash commands) and `exec` (programs). Lua runs in a sandbox with no file or network access, under time and memory limits, only in the interactive TUI; a plugin that fails three times in a minute is turned off until you restart. `docs/LUA.md` is the reference.\n- **Lua on screen.** `ulx.status.add` adds a segment to the hint bar or header, `ulx.pane.add` adds panes `5` to `9`, and `ulx.ui.select`, `ulx.ui.input` and `ulx.ui.popup` open dialogs.\n- **`/lua` popup** (or `ctrl+x L`): each plugin's version, requested and granted permissions, state and last error. `g` grants, `d` turns a plugin off or on, `r` reloads, `enter` shows the full error.\n- **`ulx lua check|eval|plugins`** check `init.lua` or a plugin without opening the TUI, evaluate an expression in the sandbox, and list plugins; `ulx doctor` has a Lua section that warns but never fails; `ulx config` lists the settings `init.lua` overrides, with the line that sets each.\n\n### Changed\n\n- The side column now appears from 100 columns (it was 120) and sits on the left; its CONTEXT section is gone because the composer's gauge covers it. `sidebar = \"on\"` also shows it on the empty home screen, `\"auto\"` shows it once a conversation has something to list, `\"off\"` never shows it and leaves the digits as text. `ctrl+b` hides and shows it, and still opens run details on a narrow terminal.\n- Popups (models, themes, sessions, providers, MCP, shortcuts, provider setup) share one size, about 85% of the width and up to 75% of the height, so lists show more rows on a large terminal.\n\n---\n\n### Install or upgrade\n\n```sh\ncurl -fsSL https://raw.githubusercontent.com/ulab24/ulx/main/install.sh | bash -s -- --version=v0.5.0\n```\n\nRun it again to upgrade. Linux and macOS, x64 and arm64. On Windows, download the `.zip` below, unpack it and put `ulx.exe` on your PATH.\n\n### Downloads\n\n| Platform | Archive | SHA-256 |\n|---|---|---|\n| Linux arm64 | [`ulx-v0.5.0-linux-arm64.tar.gz`](https://github.com/ulab24/ulx/releases/download/v0.5.0/ulx-v0.5.0-linux-arm64.tar.gz) | `12fc0850fdda1bc8…` |\n| Linux x64 | [`ulx-v0.5.0-linux-x64.tar.gz`](https://github.com/ulab24/ulx/releases/download/v0.5.0/ulx-v0.5.0-linux-x64.tar.gz) | `834d755a142619dd…` |\n| macOS arm64 | [`ulx-v0.5.0-macos-arm64.tar.gz`](https://github.com/ulab24/ulx/releases/download/v0.5.0/ulx-v0.5.0-macos-arm64.tar.gz) | `8b749ddc5d26a42f…` |\n| macOS x64 | [`ulx-v0.5.0-macos-x64.tar.gz`](https://github.com/ulab24/ulx/releases/download/v0.5.0/ulx-v0.5.0-macos-x64.tar.gz) | `d555b9c5b4177489…` |\n| Windows x64 | [`ulx-v0.5.0-windows-x64.zip`](https://github.com/ulab24/ulx/releases/download/v0.5.0/ulx-v0.5.0-windows-x64.zip) | `f31e4ac20d1d514e…` |\n\n`checksums.txt` lists the full hashes and is signed (`checksums.txt.asc`) with the ulab24 release key, fingerprint `09F8 8142 8CD9 EA8B 8471 384B 9E17 F910 9A99 78C1`. The installer checks the signature and the hash before it installs anything.\n\n**Full changelog**: https://github.com/ulab24/ulx/compare/v0.4.0...v0.5.0\n"
+    },
     {
       "version": "0.4.0",
       "tag": "v0.4.0",
