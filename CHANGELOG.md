@@ -2,6 +2,27 @@
 
 ## Unreleased
 
+## 0.5.0 - 2026-11-10
+
+The chat screen now has numbered panes you jump to with a number key, and `init.lua` plus Lua plugins let you change keys, theme and status segments without waiting for a release.
+
+### Added
+
+- **Numbered panes.** On a terminal of at least 100x24 the side column sits on the left as `[1]-Sessions` (resumable sessions, this one first), `[2]-Plan`, `[3]-Agents` and `[4]-Files`, with the chat as `[0]` and a key-hint bar on the last row. Set `preferences.panesSide` to `"right"` to keep it on the right.
+- **Pane keys.** With an empty message box (or in vim NORMAL) `1` to `4` focus a pane and `0` or `esc` return to the chat; `alt+1` to `alt+4` and `alt+0` work even while you type. `tab`/`shift+tab` move between panes, `j`/`k` or the arrows move the selection. Remap them as `keybindings.focusPane1` to `focusPane4` and `focusChat`.
+- **Pane actions.** `enter` resumes the session, opens the plan step, opens the agent in the transcript or opens the file's diff; `x` in `[3]-Agents` stops that agent (background agents only; one running inside the turn says to use `esc esc`). The chat area previews the selection as `[0]-Session preview`, `[0]-Plan step`, `[0]-Agent detail` or `[0]-File diff`. With the mouse, click a pane or row (click again to open); the wheel moves the selection.
+- **Panes on small terminals.** Below 100x24, `1` to `4` and `alt+1` to `alt+4` open that pane as a popup; `esc` closes it.
+- **`init.lua`.** Put Lua in `~/.config/ulx/init.lua` (or name a file with `ULX_INIT_LUA`, or turn it off with `ULX_INIT_LUA=off`) to set `ulx.opt` options over your JSON config, map keys with `ulx.keymap.set`, react to events with `ulx.on`, and recolour theme tokens with `ulx.theme.set`. Lua keys never take a letter or digit you are typing, and a broken `init.lua` leaves ulx working and shows one notice with the file and line.
+- **Lua plugins.** A folder in `~/.config/ulx/lua/<name>/` with a `plugin.lua` manifest and an `init.lua` can add keys, events, status segments, panes and dialogs. Plugins get no permission until you grant it with `ulx.plugins.allow` or in the `/lua` popup: `state.read` (titles, plan, files), `commands.run` (slash commands) and `exec` (programs). Lua runs in a sandbox with no file or network access, under time and memory limits, only in the interactive TUI; a plugin that fails three times in a minute is turned off until you restart. `docs/LUA.md` is the reference.
+- **Lua on screen.** `ulx.status.add` adds a segment to the hint bar or header, `ulx.pane.add` adds panes `5` to `9`, and `ulx.ui.select`, `ulx.ui.input` and `ulx.ui.popup` open dialogs.
+- **`/lua` popup** (or `ctrl+x L`): each plugin's version, requested and granted permissions, state and last error. `g` grants, `d` turns a plugin off or on, `r` reloads, `enter` shows the full error.
+- **`ulx lua check|eval|plugins`** check `init.lua` or a plugin without opening the TUI, evaluate an expression in the sandbox, and list plugins; `ulx doctor` has a Lua section that warns but never fails; `ulx config` lists the settings `init.lua` overrides, with the line that sets each.
+
+### Changed
+
+- The side column now appears from 100 columns (it was 120) and sits on the left; its CONTEXT section is gone because the composer's gauge covers it. `sidebar = "on"` also shows it on the empty home screen, `"auto"` shows it once a conversation has something to list, `"off"` never shows it and leaves the digits as text. `ctrl+b` hides and shows it, and still opens run details on a narrow terminal.
+- Popups (models, themes, sessions, providers, MCP, shortcuts, provider setup) share one size, about 85% of the width and up to 75% of the height, so lists show more rows on a large terminal.
+
 ## 0.4.0 - 2026-11-09
 
 ulx tells ult what it is doing, works as a custom agent in Xcode 27 and Android Studio, and every release now has public release notes.
